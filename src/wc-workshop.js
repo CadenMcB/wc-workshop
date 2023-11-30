@@ -1,4 +1,5 @@
 import { LitElement, html, css } from 'lit';
+import "./nasa-image.js";
 
 export class WcWorkshop extends LitElement {
   static get properties() {
@@ -28,14 +29,32 @@ export class WcWorkshop extends LitElement {
         transition: .5s all ease-in-out;
       }
 
+      .image {
+        display: inline-block;
+      }
+
+      .image div {
+        max-width: 200px;
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      .image img {
+        display: block;
+        width: 200px;
+        height: 200px;
+      }
+
       details {
         margin: 16px;
         padding: 16px;
-        background-color: white;
+        background-color: blue;
       }
       summary {
         font-size: 24px;
         padding: 8px;
+        color: white;
+        font-size: 42px;
       }
       input {
         font-size: 20px;
@@ -54,6 +73,9 @@ export class WcWorkshop extends LitElement {
   }
 
   render() {
+    // ""
+    // ''
+    // ``
     return html`
     <h2>${this.title}</h2>
     <details open>
@@ -64,9 +86,10 @@ export class WcWorkshop extends LitElement {
     </details>
     <div class="results">
       ${this.items.map((item, index) => html`
-        <div>
-          ${item.data[0].title}
-        </div>
+      <nasa-image
+        source = "${item.links[0].href}"
+        title = "${item.data[0].title}" 
+      ></nasa-image>
       `)}
     </div>
     `;
